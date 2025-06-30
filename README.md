@@ -58,6 +58,5 @@ This project presents a fully interactive, SEO-optimized research article analyz
 
 **Author:** Rayan Abubakar  
 **Institution:** Livingston Research  
-**License:** MIT or CC-BY-NC (choose based on how you want others to use your work)
 
 > Built as part of a 2025 research publishing assignment on AI in education.
