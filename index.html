@@ -2,15 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Ensuring mobile compatibility as seen on https://www.healthdirect.gov.au/sugar -->
+    <!-- Mobile compatibility -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta
-      name="description"
-      content="In 2025, AI tools like ChatGPT and Claude are transforming how college students write, study, and succeed. This data-driven report examines how students use Writing AI, Paper AI, and AI Assistants, and how colleges are responding."
-    />
-    <title>How U.S. College Students Use Writing AI and AI Assistants in 2025</title>
+    <!-- SEO Metadata -->
+    <meta name="description" content="Data-driven report on AI in Higher Education in 2025. Explore how U.S. college students use Writing AI, Paper AI, and AI Assistants, and discover insights and trends shaping the future of education." />
+    <meta name="keywords" content="AI in Higher Education, Writing AI, College AI, AI Assistants, Education 2025, Academic AI" />
+    <meta name="author" content="Rayan-Abubakar" />
+    <link rel="canonical" href="https://www.rayan-abubakar.dev/ai-higher-education-report-2025" />
+    <!-- Open Graph Metadata for social sharing -->
+    <meta property="og:title" content="AI in Higher Education Report 2025" />
+    <meta property="og:description" content="Insights and analysis on how U.S. college students utilize Writing AI and AI Assistants in 2025. Discover the trends, challenges, and future of academic AI." />
+    <meta property="og:url" content="https://www.rayan-abubakar.dev/ai-higher-education-report-2025" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://www.rayan-abubakar.dev/images/ai-report-2025.jpg" />
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI in Higher Education Report 2025" />
+    <meta name="twitter:description" content="A comprehensive analysis on the use of AI tools, including Writing AI and AI Assistants, among U.S. college students in 2025." />
+    <meta name="twitter:image" content="https://www.rayan-abubakar.dev/images/ai-report-2025.jpg" />
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>AI in Higher Education Report 2025</title>
+
     <!-- Load Plotly library from CDN using an explicit version -->
-    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" defer></script>
+
+    <!-- CSS Styles -->
     <style>
       /* Global Styles */
       body {
@@ -28,7 +45,58 @@
       a:hover {
         text-decoration: underline;
       }
-      /* Container & Blog Layout */
+      /* Global Header Styles */
+      header.global-header {
+        background: linear-gradient(135deg, #1d3c6a, #2a5298);
+        color: #fff;
+        padding: 1.5em 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
+      }
+      /* Header collapsed styles */
+      header.global-header.collapsed {
+        padding: 0.5em 1em;
+        height: 50px;
+        overflow: hidden;
+      }
+      header.global-header.collapsed p {
+        display: none;
+      }
+      header.global-header.collapsed h1 {
+        font-size: 1.2em;
+        align-self: flex-start;
+      }
+      header.global-header h1 {
+        margin: 0;
+        font-size: 2em;
+      }
+      header.global-header p {
+        margin: 0.5em 0 0;
+        font-size: 1em;
+      }
+      /* Global Footer Styles */
+      footer.global-footer {
+        background: #1d3c6a;
+        color: #fff;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.9em;
+      }
+      footer.global-footer p {
+        margin: 0.3em 0;
+      }
+      /* Main Content Area */
       article {
         max-width: 900px;
         margin: 3em auto;
@@ -37,14 +105,16 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }
-      header h1 {
+      article header {
         margin: 0 0 1em;
-        font-size: 2.8em;
         text-align: center;
-        color: #1d3c6a;
       }
-      h2,
-      h3 {
+      article header h1 {
+        font-size: 2.8em;
+        color: #1d3c6a;
+        margin: 0;
+      }
+      h2, h3 {
         margin-top: 1.8em;
         border-bottom: 2px solid #d1e3f0;
         padding-bottom: 0.3em;
@@ -53,6 +123,21 @@
       p {
         margin: 1em 0;
         text-align: justify;
+      }
+      /* Fade-in Animation for content sections */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Accessibility Improvements */
+      img, iframe {
+        max-width: 100%;
+        height: auto;
       }
       /* Blockquote Styles */
       blockquote {
@@ -204,8 +289,7 @@
       #scrollToTop:hover {
         background: rgba(29, 114, 184, 1);
       }
-      
-      /* Mobile Optimization Rules Inspired by Healthdirect */
+      /* Mobile Optimization */
       @media (max-width: 600px) {
         body {
           font-size: 16px;
@@ -214,8 +298,8 @@
           margin: 1em;
           padding: 1em;
         }
-        header h1 {
-          font-size: 1.8em;
+        header.global-header h1 {
+          font-size: 1.6em;
         }
         h2 {
           font-size: 1.5em;
@@ -234,9 +318,39 @@
         }
       }
     </style>
-    <script>
-      // Initialize all Plotly charts when the DOM is ready.
-      window.onload = function () {
+
+    <!-- JavaScript Enhancements -->
+    <script defer>
+      // Collapsing sticky header on scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header.global-header");
+        if (window.pageYOffset > 100) {
+          header.classList.add("collapsed");
+        } else {
+          header.classList.remove("collapsed");
+        }
+      });
+
+      // Fade-in animation using IntersectionObserver:
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        // Observe all sections, header, nav, and footer elements that have the class "fade-in"
+        document.querySelectorAll("article section, article header, nav, footer").forEach(el => {
+          el.classList.add("fade-in");
+          observer.observe(el);
+        });
+      });
+
+      // Initialize Plotly charts when DOM content is loaded.
+      window.addEventListener("DOMContentLoaded", function () {
         // Heatmap for AI-Generated Content by Discipline.
         const disciplines = ["Arts & Humanities", "Social Sciences", "STEM", "Health"];
         const responses = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"];
@@ -429,40 +543,46 @@
         scrollToTopBtn.addEventListener("click", function () {
           document.getElementById("outline").scrollIntoView({ behavior: "smooth" });
         });
-      };
+      });
     </script>
   </head>
   <body>
-    <article>
+    <header class="global-header" role="banner">
+      <h1>AI in Higher Education Report 2025</h1>
+      <p>Insights &amp; Analysis on the Future of College AI</p>
+    </header>
+    <article role="main">
       <header>
         <h1>How U.S. College Students Use Writing AI and AI Assistants in 2025</h1>
       </header>
-      <!-- Navigation Outline with No Subsections -->
-      <details id="outline" open>
-        <summary>Navigation Outline</summary>
-        <ol>
-          <li><a href="#section-one">1. The Rise of Writing AI on College Campuses</a></li>
-          <li><a href="#section-two">2. Adoption of College AI — How Many Students Use AI Tools in 2025?</a></li>
-          <li><a href="#section-three">3. What Are College Students Using Writing AI and Paper AI For?</a></li>
-          <li><a href="#section-four">4. Who Uses AI Assistants Most? Gender, Income &amp; Discipline Trends</a></li>
-          <li><a href="#section-five">5. Why College Students Use or Avoid AI Assistants in 2025</a></li>
-          <li><a href="#section-six">6. Navigating the Grey Zone — Ethics, Misuse, and Institutional Rules</a></li>
-          <li><a href="#section-seven">7. Are Colleges Helping Students Use AI Responsibly?</a></li>
-          <li><a href="#section-eight">8. The Future of Writing AI in Higher Education</a></li>
-          <li><a href="#section-nine">9. Toward an AI-Integrated Education System</a></li>
-          <li><a href="#section-infographic">10. Infographic Overview</a></li>
-          <li><a href="#section-tools">Tool Usage Documentation</a></li>
-          <li><a href="#section-faq">FAQ</a></li>
-          <li><a href="#section-references">References</a></li>
-        </ol>
-      </details>
+      <nav aria-label="Navigation Outline">
+        <details id="outline" open>
+          <summary>Navigation Outline</summary>
+          <ol>
+            <li><a href="#section-one">1. The Rise of Writing AI on College Campuses</a></li>
+            <li><a href="#section-two">2. Adoption of College AI — How Many Students Use AI Tools in 2025?</a></li>
+            <li><a href="#section-three">3. What Are College Students Using Writing AI and Paper AI For?</a></li>
+            <li><a href="#section-four">4. Who Uses AI Assistants Most? Gender, Income &amp; Discipline Trends</a></li>
+            <li><a href="#section-five">5. Why College Students Use or Avoid AI Assistants in 2025</a></li>
+            <li><a href="#section-six">6. Navigating the Grey Zone — Ethics, Misuse, and Institutional Rules</a></li>
+            <li><a href="#section-seven">7. Are Colleges Helping Students Use AI Responsibly?</a></li>
+            <li><a href="#section-eight">8. The Future of Writing AI in Higher Education</a></li>
+            <li><a href="#section-nine">9. Toward an AI-Integrated Education System</a></li>
+            <li><a href="#section-infographic">10. Infographic Overview</a></li>
+            <li><a href="#section-tools">Tool Usage Documentation</a></li>
+            <li><a href="#section-faq">FAQ</a></li>
+            <li><a href="#section-references">References</a></li>
+          </ol>
+        </details>
+      </nav>
       
+      <!-- Content Sections -->
       <section id="section-one">
         <h2>1. The Rise of Writing AI on College Campuses</h2>
         <p>
           By 2025, writing AI tools and AI assistants will become essential to the college experience, helping students improve academic performance, manage time, and reduce stress. Since the release of ChatGPT in late 2022, the adoption of College AI has grown rapidly, with tools like
-          <a href="https://www.microsoft.com" target="_blank">Microsoft Copilot</a>,
-          <a href="https://www.google.com" target="_blank">Google Gemini</a>, and Claude integrated into daily study routines.
+          <a href="https://www.microsoft.com" target="_blank" rel="noopener">Microsoft Copilot</a>,
+          <a href="https://www.google.com" target="_blank" rel="noopener">Google Gemini</a>, and Claude integrated into daily study routines.
         </p>
         <p>
           Students use Paper AI tools to brainstorm, draft, and edit their work, often alongside traditional resources. Despite initial faculty bans and academic integrity warnings, students continue to use AI to fill gaps in support, especially when human feedback is slow or unavailable.
@@ -476,7 +596,7 @@
         <h2>2. Adoption of College AI — How Many Students Use AI Tools in 2025?</h2>
         <p>
           In 2025, the adoption of College AI tools has become near-universal across U.S. campuses. A recent report from
-          <a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/education/2025-Microsoft-AI-in-Education-Report.pdf" target="_blank">Microsoft AI in Education Report</a>
+          <a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/education/2025-Microsoft-AI-in-Education-Report.pdf" target="_blank" rel="noopener">Microsoft AI in Education Report</a>
           and PSB Insights shows that 93% of college students have used some form of AI assistant for academic work. Of those, 42% use them weekly, and 30% rely on them daily.
         </p>
         <p>
@@ -484,16 +604,16 @@
         </p>
         <p>
           Internationally, similar trends are visible. The U.K.-based
-          <a href="https://www.hepi.ac.uk/wp-content/uploads/2025/02/HEPI-Policy-Note-61-1.pdf" target="_blank">HEPI Policy Note 61-1</a>
+          <a href="https://www.hepi.ac.uk/wp-content/uploads/2025/02/HEPI-Policy-Note-61-1.pdf" target="_blank" rel="noopener">HEPI Policy Note 61-1</a>
           found that 92% of undergraduates now use AI tools—many for graded assignments. For more detail, see the
-          <a href="https://www.businessinsider.com/how-college-students-use-ai-homework-study-2025-3?utm_source=chatgpt.com" target="_blank">Business Insider report</a>
+          <a href="https://www.businessinsider.com/how-college-students-use-ai-homework-study-2025-3?utm_source=chatgpt.com" target="_blank" rel="noopener">Business Insider report</a>
           and
-          <a href="https://www.insidehighered.com" target="_blank">Inside Higher Ed</a>.
+          <a href="https://www.insidehighered.com" target="_blank" rel="noopener">Inside Higher Ed</a>.
         </p>
         <p class="chart-description">
           Bar chart showing frequency of AI use among U.S. college students.
         </p>
-        <div id="ai-chart" class="chart-container"></div>
+        <div id="ai-chart" class="chart-container" aria-label="Bar chart displaying frequency of AI use"></div>
       </section>
   
       <section id="section-three">
@@ -511,9 +631,7 @@
           <li>Summarize readings and articles (38%)</li>
         </ul>
         <p>
-          A Springer (2023) study (
-          <a href="https://link.springer.com/content/pdf/10.1186/s41239-023-00425-2.pdf?utm_source=scite&getft_integrator=scite" target="_blank">Springer PDF</a>
-          ) found that 50% of English-as-a-New-Language (ENL) students preferred AI feedback over human input for its speed and privacy. Many students use these tools when professors or tutors aren’t available, especially during late-night work sessions.
+          A Springer (2023) study (<a href="https://link.springer.com/content/pdf/10.1186/s41239-023-00425-2.pdf?utm_source=scite&getft_integrator=scite" target="_blank" rel="noopener">Springer PDF</a>) found that 50% of English-as-a-New-Language (ENL) students preferred AI feedback over human input for its speed and privacy. Many students use these tools when professors or tutors aren’t available, especially during late-night work sessions.
         </p>
         <p>
           In creative disciplines, students tend to use AI for ideation and outline structuring, while STEM majors lean heavily on AI for code generation and lab analysis.
@@ -521,16 +639,14 @@
         <p class="chart-description">
           Horizontal bar chart showing top academic use cases of AI by college students.
         </p>
-        <div id="use-case-chart" class="chart-container"></div>
+        <div id="use-case-chart" class="chart-container" aria-label="Horizontal bar chart showing top AI academic use cases"></div>
       </section>
   
       <section id="section-four">
         <h2>4. Who Uses AI Assistants Most? Gender, Income &amp; Discipline Trends</h2>
         <h3>4.1 Gender Gaps in AI Assistant Usage</h3>
         <p>
-          Survey data from the
-          <a href="https://www.hepi.ac.uk/wp-content/uploads/2025/02/HEPI-Policy-Note-61-1.pdf" target="_blank">HEPI 2025 report</a>
-          (mirrored in U.S. student forums and EDUCAUSE findings) shows that male students are more likely to use AI assistants frequently, especially for technical or productivity-focused tasks.
+          Survey data from the <a href="https://www.hepi.ac.uk/wp-content/uploads/2025/02/HEPI-Policy-Note-61-1.pdf" target="_blank" rel="noopener">HEPI 2025 report</a> (mirrored in U.S. student forums and EDUCAUSE findings) shows that male students are more likely to use AI assistants frequently, especially for technical or productivity-focused tasks.
         </p>
         <ul>
           <li>Over 50% of male students had used AI tools before arriving at college.</li>
@@ -543,7 +659,7 @@
         <p class="chart-description">
           Bar chart comparing gender differences in AI assistant usage.
         </p>
-        <div id="gender-chart" class="chart-container"></div>
+        <div id="gender-chart" class="chart-container" aria-label="Bar chart comparing gender differences in AI assistant usage"></div>
         <h3>4.2 Socioeconomic Divide: Access vs. Awareness</h3>
         <p>
           Income plays a significant role in the use of AI in education. Wealthier students are more likely to pay for premium AI assistant subscriptions, have greater confidence in using Paper AI features, and are better informed about acceptable use policies. Conversely, lower-income students often use free versions of AI tools, report less confidence with prompt writing and AI interpretation, and are uncertain about plagiarism.
@@ -551,7 +667,7 @@
         <p class="chart-description">
           Bar chart comparing AI usage by socioeconomic groups.
         </p>
-        <div id="socioeconomic-chart" class="chart-container"></div>
+        <div id="socioeconomic-chart" class="chart-container" aria-label="Bar chart comparing AI usage by socioeconomic groups"></div>
         <h3>4.3 Disciplinary Differences: STEM vs. Humanities</h3>
         <p>
           Students’ majors also shape how they interact with AI:
@@ -568,7 +684,7 @@
         <p class="chart-description">
           Heatmap chart showing perceptions of AI-generated content by discipline and student response.
         </p>
-        <div id="plotly-heatmap-ai-perception" class="chart-container"></div>
+        <div id="plotly-heatmap-ai-perception" class="chart-container" aria-label="Heatmap chart showing perceptions of AI-generated content"></div>
       </section>
       
       <section id="section-five">
@@ -591,12 +707,12 @@
           Not every student is confident about using Paper AI tools—and for good reason. Across multiple sources, students cited key concerns, including the fear of being accused of academic dishonesty, worries about AI errors or hallucinations, lack of clarity from instructors, and concerns that overuse might diminish critical thinking skills.
         </p>
         <p>
-          The <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/he.20511?src=getftr&utm_source=scite&getft_integrator=scite" target="_blank">2024 Wiley study</a> highlights that underserved students—particularly low-income, first-generation, and minority students—lack access to paid AI tools, safety knowledge, and institutional support, potentially widening achievement gaps.
+          The <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/he.20511?src=getftr&utm_source=scite&getft_integrator=scite" target="_blank" rel="noopener">2024 Wiley study</a> highlights that underserved students—particularly low-income, first-generation, and minority students—lack access to paid AI tools, safety knowledge, and institutional support, potentially widening achievement gaps.
         </p>
         <p class="chart-description">
           Bar chart illustrating AI support and access among underserved college students.
         </p>
-        <div id="underserved-chart" class="chart-container"></div>
+        <div id="underserved-chart" class="chart-container" aria-label="Bar chart illustrating AI support and access among underserved students"></div>
         <h3>Blended Models: Why AI Should Complement Human Support</h3>
         <p>
           Perhaps the most promising insight from the research is that writing AI works best when paired with human input. Students benefit from AI’s speed and availability, yet they also value instructor feedback for deeper motivation, emotional encouragement, and clarification.
@@ -619,8 +735,7 @@
       <section id="section-seven">
         <h2>7. Are Colleges Helping Students Use AI Responsibly?</h2>
         <p>
-          In 2025, most U.S. students use AI assistants for writing and learning, but few say they have received structured guidance on how to use them responsibly. According to 
-          <a href="https://library.educause.edu/resources" target="_blank">EDUCAUSE</a>, only 20% of students report receiving formal AI training, although 57% believe AI literacy is essential to their education and career success.
+          In 2025, most U.S. students use AI assistants for writing and learning, but few say they have received structured guidance on how to use them responsibly. According to <a href="https://library.educause.edu/resources" target="_blank" rel="noopener">EDUCAUSE</a>, only 20% of students report receiving formal AI training, although 57% believe AI literacy is essential to their education and career success.
         </p>
         <p>
           Many institutions offer vague or inconsistent messages. One class might warn against using Writing AI, while another casually encourages it. This inconsistency creates confusion and ethical uncertainty. Moreover, faculty often lack the resources to teach proper AI usage, leaving students to rely on peers or trial and error.
@@ -637,7 +752,7 @@
         <p class="chart-description">
           Horizontal bar chart of institutional AI support in U.S. higher education.
         </p>
-        <div id="institutional-support-chart" class="chart-container"></div>
+        <div id="institutional-support-chart" class="chart-container" aria-label="Horizontal bar chart showing institutional AI support in U.S. higher education"></div>
       </section>
       
       <section id="section-eight">
@@ -663,7 +778,7 @@
         <p class="chart-description">
           Pie chart representing future priorities for AI on college campuses.
         </p>
-        <div id="future-ai-chart" class="chart-container"></div>
+        <div id="future-ai-chart" class="chart-container" aria-label="Pie chart representing future AI priorities"></div>
       </section>
       
       <section id="section-nine">
@@ -684,8 +799,9 @@
         <p class="chart-description">
           Infographic summarizing key findings and data on U.S. college students' use of Writing AI and AI assistants in 2025.
         </p>
-        <div style="position: relative; width: 100%; height: 0; padding-top: 250%; padding-bottom: 0; box-shadow: 0 2px 8px rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
-          <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" src="https://www.canva.com/design/DAGrfihn7LI/kvEh645gvgSibHVfT_9Eaw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+        <div style="position: relative; width: 100%; height: 0; padding-top: 250%; box-shadow: 0 2px 8px rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px;"
+          aria-label="Infographic overview">
+          <iframe loading="lazy" src="https://www.canva.com/design/DAGrfihn7LI/kvEh645gvgSibHVfT_9Eaw/view?embed" allowfullscreen="allowfullscreen" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none;"></iframe>
         </div>
       </section>
       
@@ -694,18 +810,15 @@
         <p>This article was created using a combination of AI-powered research, writing, and development tools to ensure accuracy, clarity, and accessibility. Below is a breakdown of the tools and their specific roles:</p>
         <ul>
           <li><strong>Scite, Google Scholar, Perplexity:</strong> Used to locate, verify, and compile credible academic sources.</li>
-          <li><strong>ChatGPT (OpenAI):</strong> Used to generate each section of the article in stages. This approach helped maintain factual clarity, tone consistency, and topic focus. ChatGPT was also used to summarize source data, structure the article, and format in HTML.</li>
-          <li><strong>Grammarly:</strong> Used after drafting to correct grammar, sentence structure, and eliminate plagiarism.</li>
+          <li><strong>ChatGPT (OpenAI):</strong> Used to generate each section of the article in stages, ensuring factual clarity, tone consistency, and focused content.</li>
+          <li><strong>Grammarly:</strong> Used post-draft to correct grammar and sentence structure while eliminating plagiarism.</li>
           <li><strong>ChartGPT:</strong> Used to generate Python code templates for the article’s visual data representations.</li>
-          <li><strong>Jupyter Notebook:</strong> Used to execute the Python code and produce raw static charts and visualizations.</li>
-          <li><strong>Plotly.js:</strong> Used to convert static visuals into interactive, responsive web-based charts embedded in the HTML article.</li>
-          <li>
-            <strong>Canva (Pro):</strong> Used to design and export a custom infographic summarizing key statistical insights from HEPI 2025, Microsoft, EDUCAUSE, Chegg, Wiley, Springer, and Microsoft Education Report. The visual was embedded into the HTML article to enhance accessibility and visual summary. Design assets were optimized for web performance and user readability.
-          </li>
-          <li><strong>GitHub Copilot:</strong> Used to transform the entire Word-processed article into a clean, user-friendly, and SEO-optimized HTML file ready for publication.</li>
+          <li><strong>Jupyter Notebook:</strong> Used to execute the Python code and produce static chart visualizations.</li>
+          <li><strong>Plotly.js:</strong> Used to convert static visuals into interactive, responsive web-based charts embedded in the HTML.</li>
+          <li><strong>Canva (Pro):</strong> Designed and exported a custom infographic summarizing key statistical insights for enhanced visual appeal and accessibility.</li>
+          <li><strong>GitHub Copilot:</strong> Transformed the full article into a clean, user-friendly, and SEO-optimized HTML file.</li>
         </ul>
-        <p>All AI-assisted outputs and design assets were reviewed, fact-checked, and revised by a human editor. No generative tool was used to draw conclusions or interpret findings without human validation. Visual materials, including the infographic, were created manually using Canva and real data.</p>
-        <p>Every step was conducted with an emphasis on accuracy, research integrity, and usability for both academic and general readers.</p>
+        <p>All AI-assisted outputs and design assets were reviewed, fact-checked, and revised by a human editor to ensure reliability and clarity.</p>
       </section>
       
       <section id="section-faq">
@@ -717,27 +830,27 @@
           </p>
           <p>
             <strong>Q:</strong> How do AI assistants work?<br />
-            <strong>A:</strong> AI assistants use machine learning models to generate text, provide feedback, and help with research tasks.
+            <strong>A:</strong> AI assistants employ machine learning models to generate text, provide feedback, and assist with research tasks.
           </p>
           <p>
             <strong>Q:</strong> Are there risks to using AI in education?<br />
-            <strong>A:</strong> Yes, some concerns include potential academic dishonesty, misinformation, and a lack of clear ethical guidelines.
+            <strong>A:</strong> Yes, potential concerns include academic dishonesty, misinformation, and a lack of clear ethical guidelines.
           </p>
           <p>
             <strong>Q:</strong> How can I contact support if I encounter issues with the AI tools?<br />
-            <strong>A:</strong> Support contact information is provided on the platform’s help page. You can typically reach out via email or live chat.
+            <strong>A:</strong> Support contact information is available on the platform’s help page, typically via email or live chat.
           </p>
           <p>
             <strong>Q:</strong> Can these AI tools be integrated with other educational platforms?<br />
-            <strong>A:</strong> Yes, many of these AI tools are designed for integration with Learning Management Systems (LMS) and other educational platforms.
+            <strong>A:</strong> Yes, many are designed for integration with Learning Management Systems (LMS) and various educational platforms.
           </p>
           <p>
-            <strong>Q:</strong> What measures are in place to protect student data?<br />
-            <strong>A:</strong> Institutions and service providers implement strict data protection policies, encryption standards, and compliance with regulations such as GDPR to ensure student data is secure.
+            <strong>Q:</strong> What measures protect student data?<br />
+            <strong>A:</strong> Institutions use strict data protection policies, encryption standards, and compliance with regulations like GDPR.
           </p>
           <p>
-            <strong>Q:</strong> How frequently is the data and analytics updated?<br />
-            <strong>A:</strong> Data analytics and reporting are typically updated on a regular basis, ranging from real-time to daily updates, depending on the tool’s configuration.
+            <strong>Q:</strong> How frequently is the data updated?<br />
+            <strong>A:</strong> Data analytics and reporting updates vary by tool—from real-time to daily updates.
           </p>
         </details>
       </section>
@@ -745,15 +858,20 @@
       <section id="section-references">
         <details>
           <summary>References</summary>
-          <p>Reference 1: HEPI Policy Note 61-1 – <a href="https://www.hepi.ac.uk/wp-content/uploads/2025/02/HEPI-Policy-Note-61-1.pdf" target="_blank">View Document</a></p>
-          <p>Reference 2: Microsoft AI in Education Report – <a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/education/2025-Microsoft-AI-in-Education-Report.pdf" target="_blank">View Report</a></p>
-          <p>Reference 3: Springer Study on Writing AI – <a href="https://link.springer.com/content/pdf/10.1186/s41239-023-00425-2.pdf?utm_source=scite&getft_integrator=scite" target="_blank">View Study</a></p>
-          <p>Reference 4: Wiley Study on AI in Education – <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/he.20511?src=getftr&utm_source=scite&getft_integrator=scite" target="_blank">View Study</a></p>
+          <p>Reference 1: HEPI Policy Note 61-1 – <a href="https://www.hepi.ac.uk/wp-content/uploads/2025/02/HEPI-Policy-Note-61-1.pdf" target="_blank" rel="noopener">View Document</a></p>
+          <p>Reference 2: Microsoft AI in Education Report – <a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/education/2025-Microsoft-AI-in-Education-Report.pdf" target="_blank" rel="noopener">View Report</a></p>
+          <p>Reference 3: Springer Study on Writing AI – <a href="https://link.springer.com/content/pdf/10.1186/s41239-023-00425-2.pdf?utm_source=scite&getft_integrator=scite" target="_blank" rel="noopener">View Study</a></p>
+          <p>Reference 4: Wiley Study on AI in Education – <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/he.20511?src=getftr&utm_source=scite&getft_integrator=scite" target="_blank" rel="noopener">View Study</a></p>
+          <p>Reference 5: Business Insider report – <a href="https://www.businessinsider.com/how-college-students-use-ai-homework-study-2025-3?utm_source=chatgpt.com" target="_blank" rel="noopener">View Report</a></p>
+          <p>Reference 6: Inside Higher Ed – <a href="https://www.insidehighered.com" target="_blank" rel="noopener">View Site</a></p>
         </details>
       </section>
     </article>
-    
+    <footer class="global-footer" role="contentinfo">
+      <p>&copy; 2025 AI in Higher Education Report. All rights reserved.</p>
+      <p>Designed and Developed by Rayan-Abubakar</p>
+    </footer>
     <!-- Floating "Back to Top" Button -->
-    <button id="scrollToTop" title="Back to Top">&#8679;</button>
+    <button id="scrollToTop" title="Back to Top" aria-label="Back to Top">&#8679;</button>
   </body>
 </html>
