@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Ensuring mobile compatibility as seen on https://www.healthdirect.gov.au/sugar -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta
       name="description"
       content="In 2025, AI tools like ChatGPT and Claude are transforming how college students write, study, and succeed. This data-driven report examines how students use Writing AI, Paper AI, and AI Assistants, and how colleges are responding."
@@ -53,6 +54,15 @@
         margin: 1em 0;
         text-align: justify;
       }
+      /* Blockquote Styles */
+      blockquote {
+        background: #e8f0fe;
+        border-left: 5px solid #1d72b8;
+        margin: 1.5em 0;
+        padding: 1em 1em 1em 1.5em;
+        font-style: italic;
+        color: #333;
+      }
       /* Navigation Outline */
       details#outline {
         max-width: 900px;
@@ -74,10 +84,6 @@
       }
       details#outline li {
         margin: 0.6em 0;
-      }
-      details#outline li ol {
-        list-style-type: disc;
-        padding-left: 20px;
       }
       /* Chart Containers */
       .chart-container {
@@ -111,7 +117,7 @@
       }
       #section-infographic iframe {
         position: absolute;
-        width: 90%;
+        width: 100%;
         height: 100%;
         top: 0;
         left: 0;
@@ -159,6 +165,22 @@
         margin: 0.8em 0;
         color: #333;
       }
+      /* Collapsible References Section */
+      #section-references {
+        margin: 2em 0;
+      }
+      #section-references details {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: #f7f7f7;
+        padding: 1em;
+      }
+      #section-references summary {
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.2em;
+        color: #1d3c6a;
+      }
       /* "Back to Top" Button */
       #scrollToTop {
         position: fixed;
@@ -183,7 +205,7 @@
         background: rgba(29, 114, 184, 1);
       }
       
-      /* Mobile Optimization */
+      /* Mobile Optimization Rules Inspired by Healthdirect */
       @media (max-width: 600px) {
         body {
           font-size: 16px;
@@ -415,34 +437,15 @@
       <header>
         <h1>How U.S. College Students Use Writing AI and AI Assistants in 2025</h1>
       </header>
-      <!-- Navigation Outline -->
+      <!-- Navigation Outline with No Subsections -->
       <details id="outline" open>
         <summary>Navigation Outline</summary>
         <ol>
           <li><a href="#section-one">1. The Rise of Writing AI on College Campuses</a></li>
           <li><a href="#section-two">2. Adoption of College AI — How Many Students Use AI Tools in 2025?</a></li>
-          <li>
-            <a href="#section-three">3. What Are College Students Using Writing AI and Paper AI For?</a>
-            <ul>
-              <li>Use Cases &amp; Statistics</li>
-            </ul>
-          </li>
-          <li>
-            <a href="#section-four">4. Who Uses AI Assistants Most? Gender, Income &amp; Discipline Trends</a>
-            <ul>
-              <li>4.1 Gender Gaps in AI Assistant Usage</li>
-              <li>4.2 Socioeconomic Divide: Access vs. Awareness</li>
-              <li>4.3 Disciplinary Differences: STEM vs. Humanities</li>
-            </ul>
-          </li>
-          <li>
-            <a href="#section-five">5. Why College Students Use or Avoid AI Assistants in 2025</a>
-            <ul>
-              <li>5.1 Why Students Use Writing AI: Support, Speed, and Confidence</li>
-              <li>5.2 Why Some Students Avoid AI: Risk, Misinformation, and Mixed Signals</li>
-              <li>Blended Models: 5.3 Why AI Should Complement Human Support</li>
-            </ul>
-          </li>
+          <li><a href="#section-three">3. What Are College Students Using Writing AI and Paper AI For?</a></li>
+          <li><a href="#section-four">4. Who Uses AI Assistants Most? Gender, Income &amp; Discipline Trends</a></li>
+          <li><a href="#section-five">5. Why College Students Use or Avoid AI Assistants in 2025</a></li>
           <li><a href="#section-six">6. Navigating the Grey Zone — Ethics, Misuse, and Institutional Rules</a></li>
           <li><a href="#section-seven">7. Are Colleges Helping Students Use AI Responsibly?</a></li>
           <li><a href="#section-eight">8. The Future of Writing AI in Higher Education</a></li>
@@ -450,6 +453,7 @@
           <li><a href="#section-infographic">10. Infographic Overview</a></li>
           <li><a href="#section-tools">Tool Usage Documentation</a></li>
           <li><a href="#section-faq">FAQ</a></li>
+          <li><a href="#section-references">References</a></li>
         </ol>
       </details>
       
@@ -735,6 +739,16 @@
             <strong>Q:</strong> How frequently is the data and analytics updated?<br />
             <strong>A:</strong> Data analytics and reporting are typically updated on a regular basis, ranging from real-time to daily updates, depending on the tool’s configuration.
           </p>
+        </details>
+      </section>
+      
+      <section id="section-references">
+        <details>
+          <summary>References</summary>
+          <p>Reference 1: HEPI Policy Note 61-1 – <a href="https://www.hepi.ac.uk/wp-content/uploads/2025/02/HEPI-Policy-Note-61-1.pdf" target="_blank">View Document</a></p>
+          <p>Reference 2: Microsoft AI in Education Report – <a href="https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/bade/documents/products-and-services/en-us/education/2025-Microsoft-AI-in-Education-Report.pdf" target="_blank">View Report</a></p>
+          <p>Reference 3: Springer Study on Writing AI – <a href="https://link.springer.com/content/pdf/10.1186/s41239-023-00425-2.pdf?utm_source=scite&getft_integrator=scite" target="_blank">View Study</a></p>
+          <p>Reference 4: Wiley Study on AI in Education – <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/he.20511?src=getftr&utm_source=scite&getft_integrator=scite" target="_blank">View Study</a></p>
         </details>
       </section>
     </article>
