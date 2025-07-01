@@ -342,7 +342,7 @@
           });
         }, { threshold: 0.1 });
 
-        // Observe all sections, header, nav, and footer elements that have the class "fade-in"
+        // Observe elements for animation
         document.querySelectorAll("article section, article header, nav, footer").forEach(el => {
           el.classList.add("fade-in");
           observer.observe(el);
@@ -351,6 +351,15 @@
 
       // Initialize Plotly charts when DOM content is loaded.
       window.addEventListener("DOMContentLoaded", function () {
+        // Define a professional blue color palette matching the header:
+        const palette = {
+          primary: "#1d3c6a",
+          secondary: "#2a5298",
+          tertiary: "#5a81ba",
+          quaternary: "#9bb3de",
+          light: "#cfdff2"
+        };
+
         // Heatmap for AI-Generated Content by Discipline.
         const disciplines = ["Arts & Humanities", "Social Sciences", "STEM", "Health"];
         const responses = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"];
@@ -369,10 +378,14 @@
           x: disciplines,
           y: responses,
           type: "heatmap",
-          colorscale: "YlGnBu",
+          colorscale: [
+            [0, palette.primary],
+            [0.5, palette.secondary],
+            [1, palette.tertiary]
+          ],
           text: valuesHeatmap,
           texttemplate: "%{z}%",
-          textfont: { color: "black" },
+          textfont: { color: "white" },
           hoverinfo: "text",
           customdata: hoverText,
           hovertemplate: "%{customdata}<extra></extra>",
@@ -390,21 +403,21 @@
         // AI Use Frequency Bar Chart.
         const labelsAI = ["Daily", "Weekly", "Monthly", "Never"];
         const valuesAI = [30, 42, 18, 10];
-        const dataAI = [{
+        const dataBar = [{
           x: labelsAI,
           y: valuesAI,
           type: "bar",
+          marker: { color: [palette.primary, palette.secondary, palette.tertiary, palette.quaternary] },
           text: valuesAI.map(v => v + "%"),
-          textposition: "auto",
-          marker: { color: ["#42A5F5", "#66BB6A", "#FFA726", "#EF5350"] }
+          textposition: "auto"
         }];
-        const layoutAI = {
+        const layoutBar = {
           title: "Frequency of AI Use Among U.S. College Students (2025)",
           xaxis: { title: "Usage Frequency" },
           yaxis: { title: "Percentage of Students", range: [0, 100] },
           template: "plotly_white"
         };
-        Plotly.newPlot("ai-chart", dataAI, layoutAI, { responsive: true });
+        Plotly.newPlot("ai-chart", dataBar, layoutBar, { responsive: true });
   
         // Use Cases Horizontal Bar Chart.
         const useCases = ["Summarizing readings", "Drafting essays", "Explaining concepts", "Generating research ideas", "Organizing workload"];
@@ -414,7 +427,9 @@
           y: useCases,
           type: "bar",
           orientation: "h",
-          marker: { color: "mediumseagreen" },
+          marker: { 
+            color: ["#2a5298", "#1d3c6a", "#5a81ba", "#9bb3de", "#cfdff2"]
+          },
           text: percentagesUseCases.map(p => p + "%"),
           textposition: "auto",
           hoverinfo: "x+y"
@@ -438,8 +453,8 @@
         ];
         const men_data = [50, 60, 45, 48, 16];
         const women_data = [36, 50, 59, 53, 11];
-        const traceMen = { x: categoriesGender, y: men_data, name: "Men", type: "bar", marker: { color: "#4F81BD" } };
-        const traceWomen = { x: categoriesGender, y: women_data, name: "Women", type: "bar", marker: { color: "#C0504D" } };
+        const traceMen = { x: categoriesGender, y: men_data, name: "Men", type: "bar", marker: { color: palette.primary } };
+        const traceWomen = { x: categoriesGender, y: women_data, name: "Women", type: "bar", marker: { color: palette.secondary } };
         const dataGender = [traceMen, traceWomen];
         const layoutGender = {
           title: "Gender Differences in AI Use and Attitudes (HEPI 2025)",
@@ -454,8 +469,8 @@
         const categoriesInc = ["Summarizing articles", "Structuring thoughts", "Using AI-edited text in assessments", "No AI use"];
         const higherIncome = [44, 42, 35, 10];
         const lowerIncome = [30, 20, 13, 20];
-        const traceHigh = { x: categoriesInc, y: higherIncome, name: "ABC1 (Higher Income)", type: "bar", marker: { color: "#2E8B57" } };
-        const traceLow = { x: categoriesInc, y: lowerIncome, name: "C2DE (Lower Income)", type: "bar", marker: { color: "#FFA07A" } };
+        const traceHigh = { x: categoriesInc, y: higherIncome, name: "ABC1 (Higher Income)", type: "bar", marker: { color: palette.primary } };
+        const traceLow = { x: categoriesInc, y: lowerIncome, name: "C2DE (Lower Income)", type: "bar", marker: { color: palette.quaternary } };
         const dataIncome = [traceHigh, traceLow];
         const layoutIncome = {
           title: "AI Usage by Socioeconomic Group (HEPI 2025)",
@@ -468,15 +483,16 @@
         Plotly.newPlot("socioeconomic-chart", dataIncome, layoutIncome, { responsive: true });
   
         // Underserved Students Bar Chart.
+        // Updated this chart to display metrics on the X-axis and percentage on the Y-axis.
         const metrics = ["Perceived Usefulness", "Comfort Using AI", "Access to Premium Tools"];
         const underservedValues = [78, 52, 34];
         const dataUnderserved = [{
           x: metrics,
           y: underservedValues,
           type: "bar",
+          marker: { color: [palette.primary, palette.secondary, palette.tertiary] },
           text: underservedValues.map(val => val + "%"),
-          textposition: "auto",
-          marker: { color: ["#2E8B57", "#4F81BD", "#C0504D"] }
+          textposition: "auto"
         }];
         const layoutUnderserved = {
           title: "AI Support vs Access Among Underserved Students (Wiley, 2024)",
@@ -488,6 +504,7 @@
         Plotly.newPlot("underserved-chart", dataUnderserved, layoutUnderserved, { responsive: true });
   
         // Institutional AI Support Bar Chart.
+        // Updated marker: each bar now gets a different color from the palette.
         const categoriesSupport = [
           "Students with access to AI tools (e.g., ChatGPT, Copilot)",
           "Students who received AI training/support",
@@ -499,7 +516,9 @@
           y: categoriesSupport,
           type: "bar",
           orientation: "h",
-          marker: { color: ["#2E8B57", "#4F81BD", "#C0504D"] },
+          marker: { 
+            color: [palette.primary, palette.secondary, palette.tertiary]
+          },
           text: percentagesSupport.map(val => val + "%"),
           textposition: "auto"
         }];
@@ -520,12 +539,11 @@
           "Student-Faculty Dialogue"
         ];
         const sizesPie = [25, 20, 15, 20, 20];
-        const colorsPie = ["#2E8B57", "#42A5F5", "#C0504D", "#FF8A65", "#66BB6A"];
         const dataPie = [{
           values: sizesPie,
           labels: labelsPie,
           type: "pie",
-          marker: { colors: colorsPie },
+          marker: { colors: [palette.primary, palette.secondary, palette.tertiary, palette.quaternary, palette.light] },
           textinfo: "label+percent",
           insidetextorientation: "radial"
         }];
